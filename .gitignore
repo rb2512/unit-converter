@@ -1,0 +1,10 @@
+# Système
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+*.swp
+
+# Dépendances (si tu ajoutes un jour npm)
+node_modules/

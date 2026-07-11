@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur de mesures</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Convertisseur de mesures</h1>
+    <div id="formContainer">
+        <div id="form">
+            <input type="number" id="inputConvert" placeholder="Valeur à convertir">
+            <select id="inputUnit">
+                <option value="miles">Miles</option>
+                <option value="lbs">Lbs</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="km">Km</option>
+                <option value="kg">Kg</option>
+                <option value="celsius">Celsius</option>
+            </select>
+            <button id="convertBtn">Convertir</button>
+        </div>
+        <div id="resultList"></div>
+    </div>
+    <div id="historyContainer">
+        <h2>Historique des conversions</h2>
+        <button id="clearBtn" class="clearBtn">Effacer l'historique</button>
+        <div id="historyList"></div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>

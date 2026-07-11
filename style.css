@@ -1,0 +1,309 @@
+/* ==========================================================================
+   Convertisseur de mesures — feuille de style
+   Direction : instrument de précision (pied à coulisse / règle graduée)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* Palette */
+  --ink: #1a2332;
+  --ink-soft: #2d3b52;
+  --steel: #5b7285;
+  --steel-light: #9db3c2;
+  --paper: #eef1f0;
+  --paper-line: #d5dbd8;
+  --brass: #c8963e;
+  --brass-dark: #a97831;
+  --ok: #3f7d5c;
+  --error: #b5473f;
+
+  /* Type */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Layout */
+  --radius: 3px;
+  --border: 1px solid var(--paper-line);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(var(--ink), var(--ink)),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      rgba(255, 255, 255, 0.035) 39px,
+      rgba(255, 255, 255, 0.035) 40px
+    );
+  color: var(--paper);
+  font-family: var(--font-display);
+  padding: 48px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* -------------------------------------------------------------------- */
+/* En-tête */
+/* -------------------------------------------------------------------- */
+
+h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+  text-align: center;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 3px;
+  background: var(--brass);
+  margin: 14px auto 0;
+}
+
+h2 {
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--steel-light);
+  margin: 0 0 16px;
+}
+
+/* -------------------------------------------------------------------- */
+/* Carte du formulaire */
+/* -------------------------------------------------------------------- */
+
+#formContainer {
+  width: 100%;
+  max-width: 460px;
+  margin-top: 40px;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+#form {
+  display: flex;
+  gap: 10px;
+  padding: 24px;
+  border-bottom: var(--border);
+}
+
+#inputConvert {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 500;
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  color: var(--ink);
+}
+
+#inputConvert::placeholder {
+  color: var(--steel-light);
+  font-family: var(--font-display);
+}
+
+#inputUnit {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: var(--radius);
+  padding: 0 10px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+#inputConvert:focus,
+#inputUnit:focus {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
+}
+
+#convertBtn {
+  width: 100%;
+  border: none;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 16px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+#convertBtn:hover {
+  background: var(--ink-soft);
+}
+
+#convertBtn:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: -4px;
+}
+
+/* -------------------------------------------------------------------- */
+/* Résultat — lecture façon cadran gradué */
+/* -------------------------------------------------------------------- */
+
+#resultList {
+  padding: 0 24px;
+}
+
+#resultList:not(:empty) {
+  padding: 20px 24px;
+}
+
+#resultList p {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--ink);
+  border-left: 3px solid var(--brass);
+  padding-left: 14px;
+}
+
+#resultList p[style*='color: red'] {
+  border-left-color: var(--error);
+  color: var(--error) !important;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* -------------------------------------------------------------------- */
+/* Historique */
+/* -------------------------------------------------------------------- */
+
+#historyContainer {
+  width: 100%;
+  max-width: 460px;
+  margin-top: 36px;
+}
+
+.clearBtn,
+#clearBtn {
+  background: transparent;
+  border: 1px solid var(--steel);
+  color: var(--steel-light);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.clearBtn:hover,
+#clearBtn:hover {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+#historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#historyList:empty::before {
+  content: 'Aucune conversion enregistrée pour le moment.';
+  display: block;
+  font-size: 0.85rem;
+  color: var(--steel-light);
+  font-style: italic;
+  padding: 4px 2px;
+}
+
+#historyList > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  border-left: 3px solid var(--steel);
+}
+
+#historyList > div p {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+#historyList > div button {
+  flex-shrink: 0;
+  border: none;
+  background: var(--error) !important;
+  color: #fff !important;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  cursor: pointer !important;
+  transition: opacity 0.15s ease;
+}
+
+#historyList > div button:hover {
+  opacity: 0.85;
+}
+
+/* -------------------------------------------------------------------- */
+/* Responsive */
+/* -------------------------------------------------------------------- */
+
+@media (max-width: 420px) {
+  #form {
+    flex-wrap: wrap;
+  }
+
+  #inputConvert {
+    flex-basis: 100%;
+  }
+
+  #inputUnit {
+    flex: 1 1 auto;
+    padding: 10px;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Accessibilité — mouvement réduit */
+/* -------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
