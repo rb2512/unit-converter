@@ -36,7 +36,7 @@ Le code est découpé en modules ES6 selon leur responsabilité :
 
 ## Démo
 
-[Lien GitHub Pages à ajouter après déploiement]
+[https://rb2512.github.io/unit-converter]
 
 ## Ce que ce projet m'a permis de pratiquer
 
